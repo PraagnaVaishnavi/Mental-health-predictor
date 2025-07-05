@@ -47,3 +47,36 @@ button:hover {
   margin-top: 1.2rem;
   font-size: 4rem;
 }
+
+.positive-result {
+  margin: 7.2rem 7.2rem;
+}
+
+.result-heading {
+  font-size: 4rem;
+}
+
+.steps {
+  font-size: 2rem;
+  margin-left: 2rem;
+  margin-top: 1.2rem;
+}
+
+.positive-result {
+  background-color: #a4e9cd;
+}
+
+.steps li {
+  color: #234036;
+  font-size: 2rem;
+}
+
+.methods {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.steps-header {
+  font-size: 3.6rem;
+}
