@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const router=express.Router();
+require('dotenv').config(); // add this at the top of your server entry point (e.g., index.js)
+
 
 router.post("/signup",async (req,res)=>{
   const {email,password}=req.body;
@@ -19,7 +21,7 @@ router.post("/signup",async (req,res)=>{
     }
 });
   
-router.post('/signin',async (req,res)=>{
+router.post('/login',async (req,res)=>{
     const {email,password}=req.body;
     try{const user=await User.findOne({email});
     if(!user)return res.status(400).json({ msg: "User not found" });
