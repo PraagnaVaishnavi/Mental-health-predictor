@@ -4,7 +4,6 @@
 @import "tailwindcss";
 
 body {
-  background-color: #d7ec96;
   font-family: "Roboto", sans-serif;
 }
 
@@ -24,14 +23,14 @@ button:hover {
 
 .about-text,
 .about-team {
-  background-color: #304840;
+  background-color: #f7fafc;
 
   margin-left: 7.2rem;
   margin-right: 7.2rem;
   margin-top: 7.2rem;
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
-  color: #ffffff;
+  color: #2b6cb0;
 }
 
 .about-content,

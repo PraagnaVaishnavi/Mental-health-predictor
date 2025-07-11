@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -9,13 +9,34 @@ function HomePage() {
       {/* Animated background cards */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-10 left-10 w-32 h-20 bg-white/20 rounded-xl backdrop-blur-sm shadow-lg transform rotate-12 animate-pulse"></div>
-        <div className="absolute top-32 right-20 w-28 h-16 bg-emerald-100/30 rounded-lg backdrop-blur-sm shadow-md transform -rotate-6 animate-bounce" style={{ animationDelay: '0.5s' }}></div>
-        <div className="absolute top-64 left-32 w-24 h-32 bg-green-100/25 rounded-2xl backdrop-blur-sm shadow-lg transform rotate-45 animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-32 right-16 w-36 h-24 bg-teal-100/20 rounded-xl backdrop-blur-sm shadow-md transform -rotate-12 animate-bounce" style={{ animationDelay: '1.5s' }}></div>
-        <div className="absolute bottom-64 left-20 w-20 h-28 bg-white/15 rounded-lg backdrop-blur-sm shadow-lg transform rotate-30 animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-40 h-28 bg-emerald-50/40 rounded-2xl backdrop-blur-sm shadow-xl transform -translate-x-1/2 -translate-y-1/2 rotate-6 animate-bounce" style={{ animationDelay: '0.8s' }}></div>
-        <div className="absolute top-20 right-1/3 w-16 h-24 bg-green-200/25 rounded-xl backdrop-blur-sm shadow-md transform -rotate-45 animate-pulse" style={{ animationDelay: '1.2s' }}></div>
-        <div className="absolute bottom-20 left-1/3 w-32 h-20 bg-teal-50/30 rounded-lg backdrop-blur-sm shadow-lg transform rotate-20 animate-bounce" style={{ animationDelay: '1.8s' }}></div>
+        <div
+          className="absolute top-32 right-20 w-28 h-16 bg-emerald-100/30 rounded-lg backdrop-blur-sm shadow-md transform -rotate-6 animate-bounce"
+          style={{ animationDelay: "0.5s" }}
+        ></div>
+        <div
+          className="absolute top-64 left-32 w-24 h-32 bg-green-100/25 rounded-2xl backdrop-blur-sm shadow-lg transform rotate-45 animate-pulse"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute bottom-32 right-16 w-36 h-24 bg-teal-100/20 rounded-xl backdrop-blur-sm shadow-md transform -rotate-12 animate-bounce"
+          style={{ animationDelay: "1.5s" }}
+        ></div>
+        <div
+          className="absolute bottom-64 left-20 w-20 h-28 bg-white/15 rounded-lg backdrop-blur-sm shadow-lg transform rotate-30 animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-1/2 w-40 h-28 bg-emerald-50/40 rounded-2xl backdrop-blur-sm shadow-xl transform -translate-x-1/2 -translate-y-1/2 rotate-6 animate-bounce"
+          style={{ animationDelay: "0.8s" }}
+        ></div>
+        <div
+          className="absolute top-20 right-1/3 w-16 h-24 bg-green-200/25 rounded-xl backdrop-blur-sm shadow-md transform -rotate-45 animate-pulse"
+          style={{ animationDelay: "1.2s" }}
+        ></div>
+        <div
+          className="absolute bottom-20 left-1/3 w-32 h-20 bg-teal-50/30 rounded-lg backdrop-blur-sm shadow-lg transform rotate-20 animate-bounce"
+          style={{ animationDelay: "1.8s" }}
+        ></div>
       </div>
 
       {/* Navigation Bar */}
@@ -29,19 +50,19 @@ function HomePage() {
           <div className="flex items-center space-x-6">
             <button
               className="text-white/90 hover:text-white hover:scale-105 transition-all duration-300 font-medium px-3 py-2 rounded-lg hover:bg-white/10"
-              onClick={() => navigate('/about')}
+              onClick={() => navigate("/about")}
             >
               About Us
             </button>
             <button
               className="bg-white/20 backdrop-blur-sm text-white border border-white/30 px-6 py-2 rounded-full hover:bg-white/30 hover:scale-105 transition-all duration-300 font-medium shadow-lg"
-              onClick={() => navigate('/login')}
+              onClick={() => navigate("/login")}
             >
               Login
             </button>
             <button
               className="bg-gradient-to-r from-emerald-400 to-green-400 text-emerald-900 px-6 py-2 rounded-full hover:from-emerald-300 hover:to-green-300 hover:scale-105 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl"
-              onClick={() => navigate('/signup')}
+              onClick={() => navigate("/signup")}
             >
               Sign Up
             </button>
@@ -56,7 +77,8 @@ function HomePage() {
             Welcome to MentoKind
           </h1>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Discover the world around you. Answer questions and get to know more about your mental health.
+            Discover the world around you. Answer questions and get to know more
+            about your mental health.
           </p>
           <div className="flex justify-center space-x-6 pt-8">
             <button className="bg-gradient-to-r from-emerald-600 to-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-emerald-500 hover:to-green-500 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
@@ -76,16 +98,26 @@ function HomePage() {
             <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mb-6 mx-auto">
               <span className="text-white text-2xl font-bold">L</span>
             </div>
-            <h3 className="text-xl font-semibold text-gray-800 text-center mb-4">Learn Together</h3>
-            <p className="text-gray-600 text-center">Join a community where learning is collaborative and supportive.</p>
+            <h3 className="text-xl font-semibold text-gray-800 text-center mb-4">
+              Detect issues before it is too late
+            </h3>
+            <p className="text-gray-600 text-center">
+              Answer a few questions to understand if you need help for your
+              mental health
+            </p>
           </div>
 
           <div className="bg-white/70 backdrop-blur-md rounded-2xl p-8 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-white/20">
             <div className="w-16 h-16 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full flex items-center justify-center mb-6 mx-auto">
               <span className="text-white text-2xl font-bold">G</span>
             </div>
-            <h3 className="text-xl font-semibold text-gray-800 text-center mb-4">Grow Kind</h3>
-            <p className="text-gray-600 text-center">Develop not just skills, but also kindness and empathy in everything you do.</p>
+            <h3 className="text-xl font-semibold text-gray-800 text-center mb-4">
+              Grow Stronger
+            </h3>
+            <p className="text-gray-600 text-center">
+              Make yourself mentally stronger to make sure nothing makes you
+              lose your head
+            </p>
           </div>
         </div>
       </div>
