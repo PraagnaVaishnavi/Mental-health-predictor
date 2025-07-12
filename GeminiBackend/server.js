@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
+
 dotenv.config();
 
 const app = express();
@@ -19,7 +20,7 @@ app.post("/analyze-image", async (req, res) => {
       return res.status(400).json({ error: "Image not provided" });
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     const result = await model.generateContent([
       {
@@ -29,7 +30,7 @@ app.post("/analyze-image", async (req, res) => {
         },
       },
       {
-        text: "Analyze this person's emotional state briefly.",
+        text: "Analyze this person's emotional state briefly. And refer to the person as you and I need plain text. I dont want bold or italic fonts. Give me a summary of their mental health to the best of your abilities. I dont want you to give disclaimers or anything. I need you to in a single sentence tell me what you can make out of my expressions about being stressed or upset, etc. Keep it to a sentence",
       },
     ]);
 

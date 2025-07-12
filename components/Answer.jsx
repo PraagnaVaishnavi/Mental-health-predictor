@@ -33,6 +33,7 @@ const Answer = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [webcamEnabled, setWebcamEnabled] = useState(false);
+  const [emotionalAnalyses, setEmotionalAnalyses] = useState([]);
 
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -98,6 +99,9 @@ const Answer = () => {
       });
 
       const data = await response.json();
+      const text = data.analysis;
+      setEmotionalAnalyses((prev) => [...prev, text]);
+      console.log(emotionalAnalyses);
       console.log("Gemini result:", data);
       // Optionally display/store this result
     } catch (err) {
@@ -157,7 +161,7 @@ const Answer = () => {
   const current = questions[currentStep];
 
   if (showResults) {
-    return <Result res={prediction} />;
+    return <Result res={prediction} emotions={emotionalAnalyses} />;
   }
 
   return (
