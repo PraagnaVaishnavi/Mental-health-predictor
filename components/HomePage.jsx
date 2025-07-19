@@ -81,7 +81,8 @@ function HomePage() {
             about your mental health.
           </p>
           <div className="flex justify-center space-x-6 pt-8">
-            <button className="bg-gradient-to-r from-emerald-600 to-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-emerald-500 hover:to-green-500 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+            <button className="bg-gradient-to-r from-emerald-600 to-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-emerald-500 hover:to-green-500 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl"
+            onClick={() => navigate("/getstarted")}>
               Get Started
             </button>
             <button className="bg-white/80 backdrop-blur-sm text-emerald-700 border-2 border-emerald-200 px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">

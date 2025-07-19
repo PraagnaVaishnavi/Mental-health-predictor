@@ -27,7 +27,7 @@ const Answer = () => {
     phys_health_interview: "",
     mental_vs_physical: "",
   });
-
+  
   const [currentStep, setCurrentStep] = useState(0);
   const [prediction, setPrediction] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -37,6 +37,14 @@ const Answer = () => {
 
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const stopCamera = () => {
+  const video = videoRef.current;
+  if (video && video.srcObject) {
+    const tracks = video.srcObject.getTracks();
+    tracks.forEach((track) => track.stop());
+    video.srcObject = null;
+  }
+};
 
   // Ask for webcam permission
   useEffect(() => {
@@ -92,7 +100,7 @@ const Answer = () => {
 
   const sendImageToGemini = async (base64Img) => {
     try {
-      const response = await fetch("http://localhost:5050/analyze-image", {
+      const response = await fetch("http://localhost:5000/api/auth/analyze-image", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ imageBase64: base64Img }),
@@ -121,42 +129,48 @@ const Answer = () => {
   };
 
   const handleSubmit = async () => {
-    const requiredFields = Object.keys(formData);
-    const isEmpty = requiredFields.some((field) => !formData[field]);
-    if (isEmpty) {
-      alert("Please answer all questions to get an accurate prediction");
-      return;
-    }
+  const requiredFields = Object.keys(formData);
+  const isEmpty = requiredFields.some((field) => !formData[field]);
+  if (isEmpty) {
+    alert("Please answer all questions to get an accurate prediction");
+    return;
+  }
 
-    const sanitizedPayload = {};
-    for (const key in formData) {
-      sanitizedPayload[key] = sanitizeValue(formData[key]);
-    }
+  const sanitizedPayload = {};
+  for (const key in formData) {
+    sanitizedPayload[key] = sanitizeValue(formData[key]);
+  }
 
-    setIsLoading(true);
-    try {
-      const response = await fetch(
-        "https://mental-health-predictor-api.onrender.com/predict",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(sanitizedPayload),
-        }
-      );
-      if (!response.ok)
-        throw new Error("Failed to get prediction from backend");
-      const result = await response.json();
-      setPrediction(result.prediction);
-      setShowResults(true);
-    } catch (error) {
-      console.error("Prediction error:", error);
-      alert("An error occurred while predicting. Please try again later.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  setIsLoading(true);
+  try {
+    const response = await fetch(
+      "https://mental-health-predictor-api.onrender.com/predict",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(sanitizedPayload),
+      }
+    );
+    if (!response.ok)
+      throw new Error("Failed to get prediction from backend");
+    const result = await response.json();
+    setPrediction(result.prediction);
+
+    // ✅ Stop webcam here once prediction is received
+    stopCamera();
+    setWebcamEnabled(false);
+
+    setShowResults(true);
+  } catch (error) {
+    console.error("Prediction error:", error);
+    alert("An error occurred while predicting. Please try again later.");
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   const current = questions[currentStep];
 

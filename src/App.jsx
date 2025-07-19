@@ -7,11 +7,12 @@ import SignUp from "../components/SignUp";
 import WorkplaceMentalHealthPredictor from "../components/Answer";
 import Result from "../components/Result";
 import Answer from "../components/Answer";
+import ProjectInsight from "../components/ProjectInsight";
 
 function App() {
   return (
-    <Answer />
-    /*
+    // <Answer />
+   
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -20,9 +21,9 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/answer" element={<WorkplaceMentalHealthPredictor />} />
         <Route path="/output" element={<Result/>}/>
+        <Route path="/getstarted" element={<ProjectInsight/>}/>
       </Routes>
     </Router>
-    */
   );
 }
 

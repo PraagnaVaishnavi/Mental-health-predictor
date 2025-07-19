@@ -1,21 +1,20 @@
 import "../src/index.css";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const email = e.target.email.value;
     const password = e.target.password.value;
 
     try {
       const response = await fetch("http://localhost:5000/api/auth/signup", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
@@ -23,7 +22,7 @@ export default function SignUp() {
 
       if (response.ok) {
         alert("Sign up successful!");
-        navigate("/answer"); // go to Answer.jsx
+        navigate("/answer");
       } else {
         alert(data.msg || "Signup failed");
       }
@@ -34,77 +33,80 @@ export default function SignUp() {
   };
 
   return (
-    <>
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 relative overflow-hidden">
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-gray-900">
-              Sign up now!
-            </h2>
-          </div>
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-emerald-100 via-green-50 to-teal-100">
+      {/* Particle background animation layer */}
+      <div className="absolute inset-0 -z-10 animate-background bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-emerald-200 via-teal-100 to-white opacity-80" />
 
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-900"
-                >
-                  Email address
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    autoComplete="email"
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
-                  />
-                </div>
-              </div>
+      {/* Particle dots (floating) */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute w-1 h-1 bg-green-400 rounded-full top-[20%] left-[25%] animate-pulse" />
+        <div className="absolute w-1 h-1 bg-teal-500 rounded-full top-[70%] left-[70%] animate-ping" />
+        <div className="absolute w-1 h-1 bg-emerald-300 rounded-full top-[40%] left-[80%] animate-bounce" />
+      </div>
 
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-gray-900"
-                >
-                  Password
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                    autoComplete="current-password"
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
-                  />
-                </div>
-              </div>
+      {/* Sign-up card */}
+      <div className="flex min-h-screen items-center justify-center px-4">
+        <div className="backdrop-blur-lg bg-white/40 shadow-xl rounded-2xl p-8 w-full max-w-md border border-white/30">
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+            Sign Up
+          </h2>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-800">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autoComplete="email"
+                className="mt-1 w-full rounded-md bg-white/70 px-3 py-2 text-gray-800 shadow-sm outline-none focus:ring-2 focus:ring-indigo-400"
+              />
+            </div>
 
-              <div>
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-800">
+                Password
+              </label>
+              <div className="relative mt-1">
+                <input
+                  id="password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  required
+                  autoComplete="new-password"
+                  className="w-full rounded-md bg-white/70 px-3 py-2 text-gray-800 shadow-sm outline-none focus:ring-2 focus:ring-indigo-400"
+                />
                 <button
-                  type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-indigo-600"
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-2 text-sm text-indigo-500 hover:text-indigo-700"
                 >
-                  Sign up
+                  {showPassword ? "🙈" : "👁️"}
                 </button>
               </div>
-            </form>
+            </div>
 
-            <p className="mt-10 text-center text-sm text-gray-500">
-              Already a member?{" "}
-              <button
-                className="font-semibold text-indigo-600 hover:text-indigo-500"
-                onClick={() => navigate("/login")}
-              >
-                Sign In Now!
-              </button>
-            </p>
-          </div>
+            <button
+              type="submit"
+              className="w-full rounded-md bg-indigo-600 hover:bg-indigo-500 px-4 py-2 text-white font-semibold transition"
+            >
+              Sign Up
+            </button>
+          </form>
+
+          <p className="mt-6 text-center text-sm text-gray-600">
+            Already have an account?{" "}
+            <button
+              className="text-indigo-600 font-semibold hover:underline"
+              onClick={() => navigate("/login")}
+            >
+              Sign In
+            </button>
+          </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }
